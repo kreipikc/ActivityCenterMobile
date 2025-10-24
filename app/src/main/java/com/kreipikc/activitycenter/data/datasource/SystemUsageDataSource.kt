@@ -35,20 +35,24 @@ class SystemUsageDataSource(private val context: Context) {
     }
 
     private fun processUsageStats(usageStats: List<UsageStats>): List<AppUsageInfo> {
-        val appUsageList = mutableListOf<AppUsageInfo>()
+        if (usageStats.isEmpty()) return emptyList()
 
-        for (stats in usageStats) {
-            if (stats.totalTimeInForeground > 0) {
-                val usageInfo = AppUsageInfo(
-                    packageName = stats.packageName,
-                    appName = getAppName(stats.packageName),
-                    usageTime = stats.totalTimeInForeground,
+        val groupedResults: List<AppUsageInfo> = usageStats
+            .filter { it.totalTimeInForeground > 0 }
+            .groupBy { it.packageName }
+            .map { (packageName, statsForPackage) ->
+                val totalTime = statsForPackage.sumOf { it.totalTimeInForeground }
+                val lastUsed = statsForPackage.maxOf { it.lastTimeUsed }
+
+                AppUsageInfo(
+                    packageName = packageName,
+                    appName = getAppName(packageName),
+                    usageTime = totalTime,
+                    lastUsedTime = lastUsed
                 )
-                appUsageList.add(usageInfo)
             }
-        }
 
-        return appUsageList.sortedByDescending { it.usageTime }
+        return groupedResults.sortedByDescending { it.usageTime }
     }
 
     private fun getAppName(packageName: String): String {

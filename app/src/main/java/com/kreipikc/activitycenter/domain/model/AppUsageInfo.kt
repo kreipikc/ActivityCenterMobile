@@ -6,5 +6,6 @@ data class AppUsageInfo(
     val packageName: String,
     val appName: String,
     val usageTime: Long,
+    val lastUsedTime: Long,
     val icon: Bitmap? = null
 )

@@ -14,6 +14,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.kreipikc.activitycenter.data.datasource.SystemUsageDataSource
 import com.kreipikc.activitycenter.domain.model.AppUsageInfo
+import com.kreipikc.activitycenter.domain.utils.TimeFormatter
 
 class MainActivity : AppCompatActivity() {
     private lateinit var appUsageActivity: SystemUsageDataSource
@@ -35,10 +36,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupClickEvents() {
-        findViewById<Button>(R.id.permissionButton).setOnClickListener {
-            askForUsageStatsPermission()
-        }
-
         findViewById<Button>(R.id.refreshButton).setOnClickListener {
             loadAppUsageStats()
         }
@@ -65,25 +62,14 @@ class MainActivity : AppCompatActivity() {
         statsText.append("📊 Статистика за день:\n\n")
 
         // Топ-10 приложений
-        stats.take(10).forEachIndexed { index, appInfo ->
-            val timeFormattedUsageTime = formatTime(appInfo.usageTime)
+        stats.forEachIndexed { index, appInfo ->
+            val timeFormattedUsageTime = TimeFormatter.formatDetailedTime(appInfo.usageTime)
+            val timeFormattedLastUseTime = TimeFormatter.formatLastUsed(appInfo.lastUsedTime)
             statsText.append("${index + 1}. ${appInfo.appName}\n")
-            statsText.append("   ⏱️ $timeFormattedUsageTime\n\n")
+            statsText.append("   ⏱️ Всего: $timeFormattedUsageTime\n   Последний раз: $timeFormattedLastUseTime\n\n")
         }
 
         statsTextView.text = statsText.toString()
-    }
-
-    private fun formatTime(milliseconds: Long): String {
-        val minutes = milliseconds / (1000 * 60)
-        val hours = minutes / 60
-        val remainingMinutes = minutes % 60
-
-        return if (hours > 0) {
-            "${hours}ч ${remainingMinutes}м"
-        } else {
-            "${remainingMinutes}м"
-        }
     }
 
     override fun onResume() {
@@ -93,9 +79,13 @@ class MainActivity : AppCompatActivity() {
 
     private fun askForUsageStatsPermission() {
         AlertDialog.Builder(this)
-            .setTitle("Инструкция по поиску приложения")
+            .setTitle("Необходимые разрешения")
             .setMessage("""
-                ШАГИ:
+                Приложению необходимо разрешение на получение данных об истории использования других приложений. Без него приложение не будет работать.
+                
+                При нажатии на "Отмена" приложение будет закрыто.
+                
+                Инструкция:
                 1. Нажми 'Открыть настройки'
                 2. Найди 'Activity Center'
                 3. Выдай права "Доступ к истории использования"
@@ -105,7 +95,7 @@ class MainActivity : AppCompatActivity() {
                 val intent = Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS)
                 startActivity(intent)
             }
-            .setNegativeButton("Отмена") { _, _ -> }
+            .setNegativeButton("Отмена") { _, _ -> finishAffinity() }
             .show()
     }
 
@@ -116,6 +106,7 @@ class MainActivity : AppCompatActivity() {
             loadAppUsageStats()
         } else {
             statusText.text = "❌ Нет доступа к статистике"
+            askForUsageStatsPermission()
         }
     }
 
