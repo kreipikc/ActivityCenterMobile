@@ -1,3 +1,35 @@
 <resources>
     <string name="app_name">Activity Center</string>
+    <string name="total_time">Total time: %s</string>
+    <string name="last_time">Last: %s</string>
+    <string name="access_granted">Access granted</string>
+    <string name="name_item">✅ Name Item</string>
+    <string name="no_access">❌ No access to statistics</string>
+    <string name="detail">Detail</string>
+    <string name="update_statistics">Update statistics</string>
+    <string name="access_verification">Access verification…</string>
+    <string name="package_name">Package name</string>
+    <string name="total_time_only_text">Total time:</string>
+    <string name="last_time_only_text">Last:</string>
+    <string name="not_used">not used</string>
+    <string name="back">Back</string>
+    <string name="cancel">Cancel</string>
+    <string name="open_settings">Open settings</string>
+    <string name="required_permissions">Required permissions</string>
+
+    <string name="permission_explanation">
+        The application needs permission to receive data about the usage history of other applications. The app won\'t work without it.\n\n
+        Clicking on \"Cancel\" will close the application.\n\n
+        Instructions:\n
+        1. Click \'Open Settings\'\n
+        2. Find \'Activity Center\'\n
+        3. Grant the rights \"Access to the usage history\"\n
+        4. After that you can return to the application
+    </string>
+
+    <!--  Logo desc  -->
+    <string name="logo_app">App Logo</string>
+    <string name="logo_info">Info Logo</string>
+    <string name="logo_alarm_clock">Alarm clock Logo</string>
+    <string name="logo_recent_history">Recent History Logo</string>
 </resources>
