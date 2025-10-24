@@ -10,10 +10,10 @@ object TimeFormatter {
         lateinit var lastTimeUsed: String
         if (hours < 1) {
             val minutes = TimeUnit.MILLISECONDS.toMinutes(System.currentTimeMillis() - lastUsed)
-            lastTimeUsed = "${minutes}m. ago"
+            lastTimeUsed = "${minutes}m ago"
         }
         else if (hours < 24) {
-            lastTimeUsed = "${hours}h. ago"
+            lastTimeUsed = "${hours}h ago"
         }
         else {
             lastTimeUsed = "More day ago"
