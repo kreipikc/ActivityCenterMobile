@@ -2,9 +2,9 @@
     <string name="app_name">Activity Center</string>
     <string name="total_time">Total time: %s</string>
     <string name="last_time">Last: %s</string>
-    <string name="access_granted">Access granted</string>
-    <string name="name_item">✅ Name Item</string>
+    <string name="access_granted">✅ Access granted</string>
     <string name="no_access">❌ No access to statistics</string>
+    <string name="name_item">Name Item</string>
     <string name="detail">Detail</string>
     <string name="update_statistics">Update statistics</string>
     <string name="access_verification">Access verification…</string>
