@@ -9,7 +9,7 @@ object TimeFormatter {
 
         lateinit var lastTimeUsed: String
         if (hours < 1) {
-            val minutes = TimeUnit.MILLISECONDS.toMinutes(System.currentTimeMillis() - lastUsed)
+            val minutes = TimeUnit.MILLISECONDS.toMinutes(diff)
             lastTimeUsed = "${minutes}m ago"
         }
         else if (hours < 24) {

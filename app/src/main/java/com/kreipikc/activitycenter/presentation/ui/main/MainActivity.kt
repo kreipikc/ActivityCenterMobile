@@ -38,39 +38,15 @@ class MainActivity : AppCompatActivity() {
         setupClickEvents()
     }
 
-    private fun setupClickEvents() {
-        findViewById<Button>(R.id.refreshButton).setOnClickListener {
-            loadAppUsageStats()
-        }
-    }
-
-    private fun loadAppUsageStats() {
-        val stats = appUsageActivity.getAppUsageLast24Hours()
-        displayStats(stats)
-    }
-
-    private fun displayStats(stats: List<AppUsageInfo>) {
-        val listStatsItem = findViewById<RecyclerView>(R.id.listStatsItem)
-
-        listStatsItem.layoutManager = LinearLayoutManager(this)
-        listStatsItem.adapter = StatsAdapter(stats, this)
-    }
-
     override fun onResume() {
         super.onResume()
         checkPermissionStatus()
     }
 
-    private fun askForUsageStatsPermission() {
-        AlertDialog.Builder(this)
-            .setTitle(getString(R.string.required_permissions))
-            .setMessage(getString(R.string.permission_explanation).trimIndent())
-            .setPositiveButton(getString(R.string.open_settings)) { _, _ ->
-                val intent = Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS)
-                startActivity(intent)
-            }
-            .setNegativeButton(getString(R.string.cancel)) { _, _ -> finishAffinity() }
-            .show()
+    private fun setupClickEvents() {
+        findViewById<Button>(R.id.refreshButton).setOnClickListener {
+            loadAppUsageStats()
+        }
     }
 
     private fun checkPermissionStatus() {
@@ -92,5 +68,29 @@ class MainActivity : AppCompatActivity() {
             packageName
         )
         return mode == AppOpsManager.MODE_ALLOWED
+    }
+
+    private fun loadAppUsageStats() {
+        val stats = appUsageActivity.getAppUsageLast24Hours()
+        displayStats(stats)
+    }
+
+    private fun displayStats(stats: List<AppUsageInfo>) {
+        val listStatsItem = findViewById<RecyclerView>(R.id.listStatsItem)
+
+        listStatsItem.layoutManager = LinearLayoutManager(this)
+        listStatsItem.adapter = StatsAdapter(stats, this)
+    }
+
+    private fun askForUsageStatsPermission() {
+        AlertDialog.Builder(this)
+            .setTitle(getString(R.string.required_permissions))
+            .setMessage(getString(R.string.permission_explanation).trimIndent())
+            .setPositiveButton(getString(R.string.open_settings)) { _, _ ->
+                val intent = Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS)
+                startActivity(intent)
+            }
+            .setNegativeButton(getString(R.string.cancel)) { _, _ -> finishAffinity() }
+            .show()
     }
 }
