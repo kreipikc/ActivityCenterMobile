@@ -4,6 +4,7 @@ import android.app.usage.UsageStats
 import android.app.usage.UsageStatsManager
 import android.content.Context
 import com.kreipikc.activitycenter.domain.model.AppUsageInfo
+import com.kreipikc.activitycenter.domain.utils.IconLoader
 import java.util.Calendar
 
 class SystemUsageDataSource(private val context: Context) {
@@ -48,7 +49,8 @@ class SystemUsageDataSource(private val context: Context) {
                     packageName = packageName,
                     appName = getAppName(packageName),
                     usageTime = totalTime,
-                    lastUsedTime = lastUsed
+                    lastUsedTime = lastUsed,
+                    icon = IconLoader.loadAppIcon(context, packageName)
                 )
             }
 

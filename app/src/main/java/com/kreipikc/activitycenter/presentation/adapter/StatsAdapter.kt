@@ -16,11 +16,11 @@ import com.kreipikc.activitycenter.presentation.ui.appdetail.StatActivity
 
 class StatsAdapter(private var stats: List<AppUsageInfo>, private var context: Context) : RecyclerView.Adapter<StatsAdapter.MyViewHolder>() {
     class MyViewHolder(view: View) : RecyclerView.ViewHolder(view)  {
-        val appIcon: ImageView = view.findViewById<ImageView>(R.id.appIcon)
-        val nameItem: TextView = view.findViewById<TextView>(R.id.nameItem)
-        val allTimeItem: TextView = view.findViewById<TextView>(R.id.allTimeItem)
-        val lastTimeItem: TextView = view.findViewById<TextView>(R.id.lastTimeItem)
-        val btnDetailsButton: Button = view.findViewById<Button>(R.id.detailsButton)
+        val appIcon: ImageView = view.findViewById(R.id.appIcon)
+        val nameItem: TextView = view.findViewById(R.id.nameItem)
+        val allTimeItem: TextView = view.findViewById(R.id.allTimeItem)
+        val lastTimeItem: TextView = view.findViewById(R.id.lastTimeItem)
+        val btnDetailsButton: Button = view.findViewById(R.id.detailsButton)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -33,23 +33,30 @@ class StatsAdapter(private var stats: List<AppUsageInfo>, private var context: C
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.nameItem.text = stats[position].appName
+        val appItem = stats[position]
 
-        val allTime = TimeFormatter.formatDetailedTime(stats[position].usageTime)
+        holder.nameItem.text = appItem.appName
+
+        val allTime = TimeFormatter.formatDetailedTime(appItem.usageTime)
         val allTimeText = context.getString(R.string.total_time, allTime)
         holder.allTimeItem.text = allTimeText
 
-        val useLastTime = TimeFormatter.formatLastUsed(stats[position].lastUsedTime)
+        val useLastTime = TimeFormatter.formatLastUsed(appItem.lastUsedTime)
         val lastTimeText = context.getString(R.string.last_time, useLastTime)
         holder.lastTimeItem.text = lastTimeText
+
+        val ico = appItem.icon
+        if (ico != null) {
+            holder.appIcon.setImageDrawable(ico)
+        }
 
         holder.btnDetailsButton.setOnClickListener {
             val intent = Intent(context, StatActivity::class.java)
 
-            intent.putExtra("appName", stats[position].appName)
+            intent.putExtra("appName", appItem.appName)
             intent.putExtra("usageTime", allTime)
             intent.putExtra("lastUsedTime", useLastTime)
-            intent.putExtra("packageName", stats[position].packageName)
+            intent.putExtra("packageName", appItem.packageName)
 
             context.startActivity(intent)
         }
