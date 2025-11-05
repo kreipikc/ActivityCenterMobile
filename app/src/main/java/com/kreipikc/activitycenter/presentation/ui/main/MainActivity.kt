@@ -17,7 +17,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.kreipikc.activitycenter.R
 import com.kreipikc.activitycenter.data.datasource.SystemUsageDataSource
 import com.kreipikc.activitycenter.domain.model.AppUsageInfo
-import com.kreipikc.activitycenter.presentation.adapter.StatsAdapter
+import com.kreipikc.activitycenter.presentation.adapter.DetailAdapter
 
 class MainActivity : AppCompatActivity() {
     private lateinit var appUsageActivity: SystemUsageDataSource
@@ -79,7 +79,7 @@ class MainActivity : AppCompatActivity() {
         val listStatsItem = findViewById<RecyclerView>(R.id.listStatsItem)
 
         listStatsItem.layoutManager = LinearLayoutManager(this)
-        listStatsItem.adapter = StatsAdapter(stats, this)
+        listStatsItem.adapter = DetailAdapter(stats, this)
     }
 
     private fun askForUsageStatsPermission() {

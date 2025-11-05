@@ -14,7 +14,7 @@ import com.kreipikc.activitycenter.domain.model.AppUsageInfo
 import com.kreipikc.activitycenter.domain.utils.TimeFormatter
 import com.kreipikc.activitycenter.presentation.ui.appdetail.AppDetailActivity
 
-class StatsAdapter(private var stats: List<AppUsageInfo>, private var context: Context) : RecyclerView.Adapter<StatsAdapter.MyViewHolder>() {
+class DetailAdapter(private var stats: List<AppUsageInfo>, private var context: Context) : RecyclerView.Adapter<DetailAdapter.MyViewHolder>() {
     class MyViewHolder(view: View) : RecyclerView.ViewHolder(view)  {
         val appIcon: ImageView = view.findViewById(R.id.appIcon)
         val nameItem: TextView = view.findViewById(R.id.nameItem)
