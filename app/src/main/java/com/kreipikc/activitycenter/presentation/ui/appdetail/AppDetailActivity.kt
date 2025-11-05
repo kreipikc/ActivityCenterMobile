@@ -8,10 +8,10 @@ import androidx.appcompat.app.AppCompatActivity
 import com.kreipikc.activitycenter.R
 import com.kreipikc.activitycenter.domain.utils.IconLoader
 
-class StatActivity : AppCompatActivity() {
+class AppDetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_stat)
+        setContentView(R.layout.activity_detail)
 
         setupView()
         setupBtnClick()

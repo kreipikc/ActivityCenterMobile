@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.kreipikc.activitycenter.R
 import com.kreipikc.activitycenter.domain.model.AppUsageInfo
 import com.kreipikc.activitycenter.domain.utils.TimeFormatter
-import com.kreipikc.activitycenter.presentation.ui.appdetail.StatActivity
+import com.kreipikc.activitycenter.presentation.ui.appdetail.AppDetailActivity
 
 class StatsAdapter(private var stats: List<AppUsageInfo>, private var context: Context) : RecyclerView.Adapter<StatsAdapter.MyViewHolder>() {
     class MyViewHolder(view: View) : RecyclerView.ViewHolder(view)  {
@@ -51,7 +51,7 @@ class StatsAdapter(private var stats: List<AppUsageInfo>, private var context: C
         }
 
         holder.btnDetailsButton.setOnClickListener {
-            val intent = Intent(context, StatActivity::class.java)
+            val intent = Intent(context, AppDetailActivity::class.java)
 
             intent.putExtra("appName", appItem.appName)
             intent.putExtra("usageTime", allTime)
