@@ -18,6 +18,14 @@
     <string name="required_permissions">Required permissions</string>
     <string name="unknown_app">Unknown application</string>
 
+    <!--  Via nav_menu  -->
+    <string name="menu">Menu</string>
+    <string name="settings">Settings</string>
+    <string name="home">Home</string>
+    <string name="statistics">Statistics</string>
+    <string name="about_the_app">About the app</string>
+    <string name="exit">Exit</string>
+
     <string name="permission_explanation">
         The application needs permission to receive data about the usage history of other applications. The app won\'t work without it.\n\n
         Clicking on \"Cancel\" will close the application.\n\n

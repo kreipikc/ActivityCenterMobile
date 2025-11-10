@@ -4,38 +4,28 @@ import android.app.AlertDialog
 import android.app.AppOpsManager
 import android.content.Context
 import android.content.Intent
-import android.os.Bundle
 import android.provider.Settings
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.TextView
-import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.kreipikc.activitycenter.R
 import com.kreipikc.activitycenter.data.datasource.SystemUsageDataSource
+import com.kreipikc.activitycenter.databinding.ActivityMainBinding
 import com.kreipikc.activitycenter.domain.model.AppUsageInfo
 import com.kreipikc.activitycenter.presentation.adapter.DetailAdapter
+import com.kreipikc.activitycenter.presentation.ui.base.BaseActivity
+import com.kreipikc.activitycenter.presentation.ui.settings.SettingsActivity
 
-class MainActivity : AppCompatActivity() {
-    private lateinit var appUsageActivity: SystemUsageDataSource
+class MainActivity : BaseActivity<ActivityMainBinding>() {
+    override fun getLayoutRes(): Int = R.layout.activity_main
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContentView(R.layout.activity_main)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
-
-        appUsageActivity = SystemUsageDataSource(this)
-
-        checkPermissionStatus()
+    override fun setupContent() {
         setupClickEvents()
+        checkPermissionStatus()
     }
 
     override fun onResume() {
@@ -43,9 +33,18 @@ class MainActivity : AppCompatActivity() {
         checkPermissionStatus()
     }
 
+    override fun navigateToSettings() {
+        val intent = Intent(this, SettingsActivity::class.java)
+        this.startActivity(intent)
+    }
+
     private fun setupClickEvents() {
         findViewById<Button>(R.id.refreshButton).setOnClickListener {
             loadAppUsageStats()
+        }
+
+        findViewById<ImageButton>(R.id.menuButton).setOnClickListener {
+            findViewById<DrawerLayout>(R.id.main).openDrawer(GravityCompat.START)
         }
     }
 
@@ -71,6 +70,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun loadAppUsageStats() {
+        val appUsageActivity = SystemUsageDataSource(this)
         val stats = appUsageActivity.getAppUsageLast24Hours()
         displayStats(stats)
     }

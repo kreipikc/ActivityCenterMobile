@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+    <group>
+        <item android:id="@+id/menuItemHome" android:title="@string/home"/>
+        <item android:id="@+id/menuItemStats" android:title="@string/statistics"/>
+        <item android:id="@+id/menuItemSettings" android:title="@string/settings"/>
+        <item android:id="@+id/menuItemAbout" android:title="@string/about_the_app"/>
+        <item android:id="@+id/menuItemExit" android:title="@string/exit"/>
+    </group>
+</menu>
