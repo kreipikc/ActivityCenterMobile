@@ -1,0 +1,44 @@
+<resources>
+    <string name="app_name">Центр Активности</string>
+    <string name="total_time">Общее время: %s</string>
+    <string name="last_time">Последний раз: %s</string>
+    <string name="access_granted">✅ Доступ выдан</string>
+    <string name="no_access">❌ Нет доступа для приложения</string>
+    <string name="name_item">Новый элемент</string>
+    <string name="detail">Описание</string>
+    <string name="update_statistics">Обновить статистику</string>
+    <string name="access_verification">Верификация доступа…</string>
+    <string name="package_name">Название пакета</string>
+    <string name="total_time_only_text">Общее время:</string>
+    <string name="last_time_only_text">Последний раз:</string>
+    <string name="not_used">не используется</string>
+    <string name="back">Вернуться</string>
+    <string name="cancel">Отмена</string>
+    <string name="open_settings">Открыть статистику</string>
+    <string name="required_permissions">Необходимы разрешения</string>
+    <string name="unknown_app">Неизвестное приложение</string>
+
+    <!--  Via nav_menu  -->
+    <string name="menu">Меню</string>
+    <string name="settings">Настройки</string>
+    <string name="home">Главная</string>
+    <string name="statistics">Статистика</string>
+    <string name="about_the_app">О приложении</string>
+    <string name="exit">Выход</string>
+
+    <string name="permission_explanation">
+        The application needs permission to receive data about the usage history of other applications. The app won\'t work without it.\n\n
+        Clicking on \"Cancel\" will close the application.\n\n
+        Instructions:\n
+        1. Click \'Open Settings\'\n
+        2. Find \'Activity Center\'\n
+        3. Grant the rights \"Access to the usage history\"\n
+        4. After that you can return to the application
+    </string>
+
+    <!--  Logo desc  -->
+    <string name="logo_app">Логотип приложения</string>
+    <string name="logo_info">Информация о логотипе</string>
+    <string name="logo_alarm_clock">Логотип будильника</string>
+    <string name="logo_recent_history">Логотип новейшей истории</string>
+</resources>
