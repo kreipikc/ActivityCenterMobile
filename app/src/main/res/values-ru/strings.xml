@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Центр Активности</string>
+    <string name="app_name">Activity Center</string>
     <string name="total_time">Общее время: %s</string>
     <string name="last_time">Последний раз: %s</string>
     <string name="access_granted">✅ Доступ выдан</string>
@@ -27,13 +27,13 @@
     <string name="exit">Выход</string>
 
     <string name="permission_explanation">
-        The application needs permission to receive data about the usage history of other applications. The app won\'t work without it.\n\n
-        Clicking on \"Cancel\" will close the application.\n\n
-        Instructions:\n
-        1. Click \'Open Settings\'\n
-        2. Find \'Activity Center\'\n
-        3. Grant the rights \"Access to the usage history\"\n
-        4. After that you can return to the application
+        Приложению требуется разрешение на получение данных об истории использования других приложений. Без этого приложение не будет работать.\n\n
+        Нажатие на \"Отмена\" закроет приложение.\n\n
+        Инструкции:\n
+        1. Нажмите \"Открыть настройки\"\n
+        2. Найдите \"Центр действий\"\n
+        3. Предоставьте права \"Доступ к истории использования\"\n
+        4. После этого вы можете вернуться в приложение
     </string>
 
     <!--  Logo desc  -->

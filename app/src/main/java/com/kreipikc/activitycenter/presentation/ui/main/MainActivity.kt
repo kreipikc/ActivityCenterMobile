@@ -50,23 +50,13 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
     private fun checkPermissionStatus() {
         val statusText = findViewById<TextView>(R.id.statusText)
-        if (hasUsageStatsPermission()) {
+        if (SystemUsageDataSource.hasUsageStatsPermission(applicationContext)) {
             statusText.text = getString(R.string.access_granted)
             loadAppUsageStats()
         } else {
             statusText.text = getString(R.string.no_access)
             askForUsageStatsPermission()
         }
-    }
-
-    private fun hasUsageStatsPermission(): Boolean {
-        val appOps = getSystemService(Context.APP_OPS_SERVICE) as AppOpsManager
-        val mode = appOps.checkOpNoThrow(
-            AppOpsManager.OPSTR_GET_USAGE_STATS,
-            android.os.Process.myUid(),
-            packageName
-        )
-        return mode == AppOpsManager.MODE_ALLOWED
     }
 
     private fun loadAppUsageStats() {
